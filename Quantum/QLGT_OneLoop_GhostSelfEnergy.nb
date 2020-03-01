@@ -1,0 +1,278 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      7988,        269]
+NotebookOptionsPosition[      7264,        242]
+NotebookOutlinePosition[      7646,        258]
+CellTagsIndexPosition[      7603,        255]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+----------------------------------------------------------
+Created  : November 2019
+author     : Ahmad Borzou, PhD
+email       : ahmad_borzou[at]baylor.edu  
+affiliation: Baylor University
+--
+In this file, Faddeev-Popov ghost Self Energy
+of QLGT is calculated.
+---------------------------------------------------------\
+\>", "Text",
+ CellChangeTimes->{{3.7793880004940944`*^9, 3.779388026383252*^9}, {
+  3.783725598544612*^9, 3.7837256156349335`*^9}}],
+
+Cell["\<\
+Using the Feynman, \[OpenCurlyQuote]t Hooft gauge:
+===========================\
+\>", "Text",
+ CellChangeTimes->{{3.783725656744768*^9, 3.783725682559723*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"xi", "=", "1"}], ";"}]], "Input",
+ CellChangeTimes->{{3.779429842330639*^9, 3.7794298556019254`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"Clear", "[", 
+  RowBox[{"Co", ",", "num", ",", "temp", ",", "amp"}], "]"}]], "Input",
+ CellChangeTimes->{{3.779398274776516*^9, 3.7793982871402206`*^9}, {
+   3.7793984128393555`*^9, 3.779398421385011*^9}, 3.7793997763647947`*^9, 
+   3.779656633463934*^9, {3.779745841167759*^9, 3.7797458457804785`*^9}, {
+   3.7837256931182833`*^9, 3.783725695158766*^9}}],
+
+Cell["\<\
+A constant:
+=========\
+\>", "Text",
+ CellChangeTimes->{{3.7837260526983123`*^9, 3.7837260608885794`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Co", "=", " ", 
+   RowBox[{"I", "/", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"2", "Pi"}], ")"}], "^", "4"}]}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.7793980869295874`*^9, 3.7793981285388126`*^9}, {
+  3.779745828687005*^9, 3.7797458343674374`*^9}, {3.7837256989485445`*^9, 
+  3.783725726178521*^9}, {3.7837260480385723`*^9, 3.783726049443452*^9}}],
+
+Cell["\<\
+The numerator of the graph:
+=====================\
+\>", "Text",
+ CellChangeTimes->{{3.7837260870784163`*^9, 3.7837261017590017`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"num", ":=", 
+  RowBox[{
+   RowBox[{"PA", "[", 
+    RowBox[{
+    "i", ",", "j", ",", "mu", ",", "m", ",", "n", ",", "nu", ",", "k"}], 
+    "]"}], 
+   RowBox[{"VAcBarc", "[", 
+    RowBox[{"a1", ",", "b1", ",", 
+     RowBox[{"p", "+", "k"}], ",", "i", ",", "j", ",", "mu", ",", "k1", ",", 
+     "l1"}], "]"}], 
+   RowBox[{"PC", "[", 
+    RowBox[{"a1", ",", "b1", ",", "a2", ",", "b2"}], "]"}], 
+   RowBox[{"VAcBarc", "[", 
+    RowBox[{
+    "k2", ",", "l2", ",", "p", ",", "m", ",", "n", ",", "nu", ",", "a2", ",", 
+     "b2"}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.7797458015877995`*^9, 3.779745803492196*^9}, {
+  3.7797458600451584`*^9, 3.779746008318359*^9}, {3.7837259856987534`*^9, 
+  3.7837259860683966`*^9}}],
+
+Cell["\<\
+Multiply the denominator of the propagators:
+==================================\
+\>", "Text",
+ CellChangeTimes->{{3.783726108368888*^9, 3.783726141278779*^9}}],
+
+Cell[BoxData[
+ RowBox[{"temp", ":=", 
+  RowBox[{"num", " ", 
+   RowBox[{"FeynAmpDenominator", "[", 
+    RowBox[{
+     RowBox[{"PropagatorDenominator", "[", 
+      RowBox[{"k", ",", "0"}], "]"}], ",", 
+     RowBox[{"PropagatorDenominator", "[", 
+      RowBox[{
+       RowBox[{"p", "+", "k"}], ",", "0"}], "]"}]}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.779746045504691*^9, 3.779746086576789*^9}, 
+   3.7797461460148993`*^9, {3.7837261669187093`*^9, 3.7837261698187895`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"amp", "=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"-", "I"}], " ", "Co", " ", 
+    RowBox[{"OneLoop", "[", 
+     RowBox[{"k", ",", "temp"}], "]"}]}], "//", 
+   RowBox[{"Simplify", "/.", 
+    RowBox[{
+     RowBox[{"ScalarProduct", "[", 
+      RowBox[{"p", ",", "p"}], "]"}], "\[Rule]", 
+     RowBox[{"m", "^", "2"}]}]}]}]}]], "Input",
+ CellChangeTimes->{{3.7797461614425325`*^9, 3.7797461787740307`*^9}, {
+  3.7797462593346643`*^9, 3.7797462862205567`*^9}, {3.783726177933875*^9, 
+  3.7837262392091093`*^9}}],
+
+Cell[BoxData[
+ FormBox[
+  RowBox[{"-", 
+   FractionBox[
+    RowBox[{"\[ImaginaryI]", " ", 
+     SuperscriptBox["g", "2"], " ", 
+     SuperscriptBox[
+      FormBox[
+       OverscriptBox[
+        FormBox["p",
+         TraditionalForm], "_"],
+       TraditionalForm], "2"], " ", 
+     RowBox[{"(", 
+      RowBox[{
+       FormBox[
+        TagBox[
+         FormBox[
+          RowBox[{
+           SubscriptBox["\<\"B\"\>", "\<\"0\"\>"], "(", 
+           RowBox[{
+            SuperscriptBox[
+             FormBox[
+              OverscriptBox[
+               FormBox["p",
+                TraditionalForm], "_"],
+              TraditionalForm], "2"], ",", "0", ",", "0"}], ")"}],
+          TraditionalForm],
+         HoldForm],
+        TraditionalForm], "-", "1"}], ")"}], " ", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{
+        FormBox[
+         SuperscriptBox[
+          OverscriptBox["g", "_"], 
+          RowBox[{
+           FormBox[
+            FormBox[
+             FormBox["k1",
+              TraditionalForm],
+             TraditionalForm],
+            TraditionalForm], 
+           FormBox[
+            FormBox[
+             FormBox["l2",
+              TraditionalForm],
+             TraditionalForm],
+            TraditionalForm]}]],
+         TraditionalForm], " ", 
+        FormBox[
+         SuperscriptBox[
+          OverscriptBox["g", "_"], 
+          RowBox[{
+           FormBox[
+            FormBox[
+             FormBox["k2",
+              TraditionalForm],
+             TraditionalForm],
+            TraditionalForm], 
+           FormBox[
+            FormBox[
+             FormBox["l1",
+              TraditionalForm],
+             TraditionalForm],
+            TraditionalForm]}]],
+         TraditionalForm]}], "-", 
+       RowBox[{
+        FormBox[
+         SuperscriptBox[
+          OverscriptBox["g", "_"], 
+          RowBox[{
+           FormBox[
+            FormBox[
+             FormBox["k1",
+              TraditionalForm],
+             TraditionalForm],
+            TraditionalForm], 
+           FormBox[
+            FormBox[
+             FormBox["k2",
+              TraditionalForm],
+             TraditionalForm],
+            TraditionalForm]}]],
+         TraditionalForm], " ", 
+        FormBox[
+         SuperscriptBox[
+          OverscriptBox["g", "_"], 
+          RowBox[{
+           FormBox[
+            FormBox[
+             FormBox["l1",
+              TraditionalForm],
+             TraditionalForm],
+            TraditionalForm], 
+           FormBox[
+            FormBox[
+             FormBox["l2",
+              TraditionalForm],
+             TraditionalForm],
+            TraditionalForm]}]],
+         TraditionalForm]}]}], ")"}]}], 
+    RowBox[{"32", " ", 
+     SuperscriptBox["\[Pi]", "2"]}]]}], TraditionalForm]], "Output",
+ CellChangeTimes->{
+  3.7797462193255796`*^9, 3.779746294461689*^9, {3.783726203583662*^9, 
+   3.783726215918817*^9}, 3.783726252918786*^9, 3.7837294389869175`*^9}]
+}, Open  ]]
+},
+WindowSize->{1366, 685},
+WindowMargins->{{-1374, Automatic}, {-116, Automatic}},
+Magnification:>1.5 Inherited,
+FrontEndVersion->"10.3 for Microsoft Windows (64-bit) (December 10, 2015)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 461, 12, 273, "Text"],
+Cell[1022, 34, 168, 4, 74, "Text"],
+Cell[1193, 40, 136, 3, 45, "Input"],
+Cell[1332, 45, 379, 6, 45, "Input"],
+Cell[1714, 53, 115, 4, 74, "Text"],
+Cell[1832, 59, 391, 9, 45, "Input"],
+Cell[2226, 70, 143, 4, 74, "Text"],
+Cell[2372, 76, 741, 19, 75, "Input"],
+Cell[3116, 97, 169, 4, 74, "Text"],
+Cell[3288, 103, 477, 11, 45, "Input"],
+Cell[CellGroupData[{
+Cell[3790, 118, 528, 14, 45, "Input"],
+Cell[4321, 134, 2927, 105, 83, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

@@ -1,0 +1,391 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     12199,        382]
+NotebookOptionsPosition[     11178,        345]
+NotebookOutlinePosition[     11555,        361]
+CellTagsIndexPosition[     11512,        358]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+----------------------------------------------------------
+Created  : November 2019
+author     : Ahmad Borzou, PhD
+email       : ahmad_borzou[at]baylor.edu  
+affiliation: Baylor University
+--
+In this file, Fermion Self Energy
+of QLGT is calculated.
+---------------------------------------------------------\
+\>", "Text",
+ CellChangeTimes->{{3.7793880004940944`*^9, 3.779388026383252*^9}, 
+   3.783720586434741*^9, {3.7837206365718126`*^9, 3.7837206412103653`*^9}, {
+   3.783720719858051*^9, 3.7837207287073917`*^9}}],
+
+Cell["\<\
+Using the Feynman, \[OpenCurlyQuote]t Hooft gauge:
+===========================\
+\>", "Text",
+ CellChangeTimes->{{3.78372062199713*^9, 3.7837206322473707`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"xi", "=", "1"}], ";"}]], "Input",
+ CellChangeTimes->{{3.779429842330639*^9, 3.7794298556019254`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"Clear", "[", 
+  RowBox[{"Co", ",", "num", ",", "temp", ",", "amp"}], "]"}]], "Input",
+ CellChangeTimes->{{3.779398274776516*^9, 3.7793982871402206`*^9}, {
+   3.7793984128393555`*^9, 3.779398421385011*^9}, 3.7793997763647947`*^9, 
+   3.779656633463934*^9}],
+
+Cell["\<\
+A constant:
+=========\
+\>", "Text",
+ CellChangeTimes->{{3.783726028393505*^9, 3.7837260363087063`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Co", " ", "=", " ", 
+   RowBox[{"I", "/", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"2", "Pi"}], ")"}], "^", "4"}]}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.7793980869295874`*^9, 3.7793981285388126`*^9}}],
+
+Cell["\<\
+The numerator of the graph
+VAFF vertex is used in the simplified form with the Levi-Civita 
+symbol. Its form can be found in the paper. 
+Note: two \\gamma^5 are dropped by ma -> -ma in the propagator
+=====================================================\
+\>", "Text",
+ CellChangeTimes->{{3.7837211530724497`*^9, 3.7837211582080317`*^9}, {
+  3.7837222717738695`*^9, 3.78372227299613*^9}}],
+
+Cell[BoxData[
+ RowBox[{"num", ":=", 
+  RowBox[{
+   RowBox[{"GA", "[", "i", "]"}], ".", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"GS", "[", 
+      RowBox[{"p", "+", "k"}], "]"}], "-", "ma"}], ")"}], ".", 
+   RowBox[{"GA", "[", "i", "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.7793981364982567`*^9, 3.779398178975336*^9}, {
+  3.7793982095253315`*^9, 3.779398226770875*^9}, {3.779398298520966*^9, 
+  3.7793983877921906`*^9}, {3.7794880734228177`*^9, 3.7794880768474193`*^9}, {
+  3.779488130271936*^9, 3.7794881881389446`*^9}, {3.7795721854902225`*^9, 
+  3.779572252679777*^9}, {3.7795723391124263`*^9, 3.7795723427363997`*^9}, {
+  3.7796566430077863`*^9, 3.7796566710562725`*^9}}],
+
+Cell["\<\
+Divide by the denominator of the propagators:
+===================================\
+\>", "Text",
+ CellChangeTimes->{{3.783722286571507*^9, 3.783722351175889*^9}, {
+  3.7837224389867077`*^9, 3.7837224611225038`*^9}, {3.7837225691111145`*^9, 
+  3.783722569627557*^9}}],
+
+Cell[BoxData[
+ RowBox[{"temp", ":=", 
+  RowBox[{"num", " ", 
+   RowBox[{"FeynAmpDenominator", "[", 
+    RowBox[{
+     RowBox[{"PropagatorDenominator", "[", 
+      RowBox[{
+       RowBox[{"p", "+", "k"}], ",", "ma"}], "]"}], ",", 
+     RowBox[{"PropagatorDenominator", "[", 
+      RowBox[{"k", ",", "0"}], "]"}]}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.7793984265279727`*^9, 3.7793985261085014`*^9}, 
+   3.7794869325976086`*^9, {3.7794882748575335`*^9, 3.7794882775959253`*^9}, {
+   3.779656689869605*^9, 3.7796566942357993`*^9}, 3.783722550940035*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"amp", "=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"-", "6"}], "I", " ", 
+    RowBox[{
+     RowBox[{"g", "^", "2"}], "/", "16"}], "Co", " ", 
+    RowBox[{"OneLoop", "[", 
+     RowBox[{"k", ",", "temp"}], "]"}]}], "//", "Simplify"}]}]], "Input",
+ CellChangeTimes->{{3.77939855216136*^9, 3.7793985832762804`*^9}, 
+   3.7793997684118853`*^9, 3.7794893048879647`*^9, {3.7795723973487825`*^9, 
+   3.779572486189495*^9}, 3.77965670562436*^9, {3.7796568151170883`*^9, 
+   3.7796568224357862`*^9}, {3.7796594717705393`*^9, 
+   3.7796594753853087`*^9}, {3.779659617339978*^9, 3.7796596178089666`*^9}, {
+   3.7796596601691236`*^9, 3.779659663514578*^9}, 3.7837223842369056`*^9, {
+   3.7837224169738007`*^9, 3.7837224175745096`*^9}, {3.7837225733049574`*^9, 
+   3.7837225805611506`*^9}}],
+
+Cell[BoxData[
+ FormBox[
+  FractionBox[
+   RowBox[{"3", " ", "\[ImaginaryI]", " ", 
+    SuperscriptBox["g", "2"], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{
+       SuperscriptBox["ma", "2"], " ", 
+       RowBox[{
+        OverscriptBox["\[Gamma]", "_"], "\[CenterDot]", 
+        FormBox[
+         OverscriptBox[
+          FormBox["p",
+           TraditionalForm], "_"],
+         TraditionalForm]}], " ", 
+       FormBox[
+        TagBox[
+         FormBox[
+          RowBox[{
+           SubscriptBox["\<\"B\"\>", "\<\"0\"\>"], "(", 
+           RowBox[{"0", ",", "0", ",", 
+            SuperscriptBox["ma", "2"]}], ")"}],
+          TraditionalForm],
+         HoldForm],
+        TraditionalForm]}], "-", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            SuperscriptBox[
+             FormBox[
+              OverscriptBox[
+               FormBox["p",
+                TraditionalForm], "_"],
+              TraditionalForm], "2"], "+", 
+            SuperscriptBox["ma", "2"]}], ")"}], " ", 
+          RowBox[{
+           OverscriptBox["\[Gamma]", "_"], "\[CenterDot]", 
+           FormBox[
+            OverscriptBox[
+             FormBox["p",
+              TraditionalForm], "_"],
+            TraditionalForm]}]}], "+", 
+         RowBox[{"4", " ", "ma", " ", 
+          SuperscriptBox[
+           FormBox[
+            OverscriptBox[
+             FormBox["p",
+              TraditionalForm], "_"],
+            TraditionalForm], "2"]}]}], ")"}], " ", 
+       FormBox[
+        TagBox[
+         FormBox[
+          RowBox[{
+           SubscriptBox["\<\"B\"\>", "\<\"0\"\>"], "(", 
+           RowBox[{
+            SuperscriptBox[
+             FormBox[
+              OverscriptBox[
+               FormBox["p",
+                TraditionalForm], "_"],
+              TraditionalForm], "2"], ",", "0", ",", 
+            SuperscriptBox["ma", "2"]}], ")"}],
+          TraditionalForm],
+         HoldForm],
+        TraditionalForm]}], "+", 
+      RowBox[{
+       SuperscriptBox[
+        FormBox[
+         OverscriptBox[
+          FormBox["p",
+           TraditionalForm], "_"],
+         TraditionalForm], "2"], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          OverscriptBox["\[Gamma]", "_"], "\[CenterDot]", 
+          FormBox[
+           OverscriptBox[
+            FormBox["p",
+             TraditionalForm], "_"],
+           TraditionalForm]}], "+", 
+         RowBox[{"2", " ", "ma"}]}], ")"}]}]}], ")"}]}], 
+   RowBox[{"128", " ", 
+    SuperscriptBox["\[Pi]", "2"], " ", 
+    SuperscriptBox[
+     FormBox[
+      OverscriptBox[
+       FormBox["p",
+        TraditionalForm], "_"],
+      TraditionalForm], "2"]}]], TraditionalForm]], "Output",
+ CellChangeTimes->{
+  3.7796568282311506`*^9, 3.7796596335805793`*^9, 3.779659665435256*^9, 
+   3.7837225305642543`*^9, {3.783722564314167*^9, 3.7837225884558616`*^9}}]
+}, Open  ]],
+
+Cell["\<\
+This has the overall form of A+B\\slashed{p}. 
+Find A and B:
+=================================\
+\>", "Text",
+ CellChangeTimes->{{3.783722606968136*^9, 3.7837226535265007`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"Clear", "[", 
+  RowBox[{"A", ",", "B"}], "]"}]], "Input",
+ CellChangeTimes->{{3.77965930356987*^9, 3.7796593106442547`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"A", "=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Coefficient", "[", 
+     RowBox[{"amp", ",", 
+      RowBox[{"DiracSlash", "[", "p", "]"}], ",", "0"}], "]"}], "/.", 
+    RowBox[{
+     RowBox[{"ScalarProduct", "[", 
+      RowBox[{"p", ",", "p"}], "]"}], "\[Rule]", 
+     RowBox[{"ma", "^", "2"}]}]}], "//", "FullSimplify"}]}]], "Input",
+ CellChangeTimes->{{3.7796593211917367`*^9, 3.779659343006589*^9}, {
+   3.7837229000944495`*^9, 3.783722951973184*^9}, {3.7837233147415876`*^9, 
+   3.7837233316122074`*^9}, 3.7837233684067135`*^9}],
+
+Cell[BoxData[
+ FormBox[
+  FractionBox[
+   RowBox[{"3", " ", "\[ImaginaryI]", " ", 
+    SuperscriptBox["g", "2"], " ", "ma", " ", 
+    RowBox[{"(", 
+     RowBox[{"1", "-", 
+      RowBox[{"2", " ", 
+       FormBox[
+        TagBox[
+         FormBox[
+          RowBox[{
+           SubscriptBox["\<\"B\"\>", "\<\"0\"\>"], "(", 
+           RowBox[{
+            SuperscriptBox["ma", "2"], ",", "0", ",", 
+            SuperscriptBox["ma", "2"]}], ")"}],
+          TraditionalForm],
+         HoldForm],
+        TraditionalForm]}]}], ")"}]}], 
+   RowBox[{"64", " ", 
+    SuperscriptBox["\[Pi]", "2"]}]], TraditionalForm]], "Output",
+ CellChangeTimes->{
+  3.779659348487685*^9, 3.7796595386127853`*^9, 3.7796598124319715`*^9, 
+   3.783722665633703*^9, {3.7837229030158434`*^9, 3.783722952626747*^9}, 
+   3.783723333546503*^9, 3.7837233727879066`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"B", "=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Coefficient", "[", 
+     RowBox[{"amp", ",", 
+      RowBox[{"DiracSlash", "[", "p", "]"}], ",", "1"}], "]"}], "/.", 
+    RowBox[{
+     RowBox[{"ScalarProduct", "[", 
+      RowBox[{"p", ",", "p"}], "]"}], "\[Rule]", 
+     RowBox[{"ma", "^", "2"}]}]}], "//", "FullSimplify"}]}]], "Input",
+ CellChangeTimes->{{3.779659329813209*^9, 3.7796593298288794`*^9}, {
+   3.7796598207032647`*^9, 3.7796598364634094`*^9}, {3.783723021980177*^9, 
+   3.7837230257577286`*^9}, 3.783723102868883*^9, {3.783723341893879*^9, 
+   3.7837233705659657`*^9}}],
+
+Cell[BoxData[
+ FormBox[
+  FractionBox[
+   RowBox[{"3", " ", "\[ImaginaryI]", " ", 
+    SuperscriptBox["g", "2"], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      FormBox[
+       TagBox[
+        FormBox[
+         RowBox[{
+          SubscriptBox["\<\"B\"\>", "\<\"0\"\>"], "(", 
+          RowBox[{"0", ",", "0", ",", 
+           SuperscriptBox["ma", "2"]}], ")"}],
+         TraditionalForm],
+        HoldForm],
+       TraditionalForm], "-", 
+      RowBox[{"2", " ", 
+       FormBox[
+        TagBox[
+         FormBox[
+          RowBox[{
+           SubscriptBox["\<\"B\"\>", "\<\"0\"\>"], "(", 
+           RowBox[{
+            SuperscriptBox["ma", "2"], ",", "0", ",", 
+            SuperscriptBox["ma", "2"]}], ")"}],
+          TraditionalForm],
+         HoldForm],
+        TraditionalForm]}], "+", "1"}], ")"}]}], 
+   RowBox[{"128", " ", 
+    SuperscriptBox["\[Pi]", "2"]}]], TraditionalForm]], "Output",
+ CellChangeTimes->{
+  3.7796598369176407`*^9, 3.783722826816348*^9, 3.783723026590854*^9, 
+   3.783723104040683*^9, {3.783723343766406*^9, 3.7837233756341467`*^9}}]
+}, Open  ]]
+},
+WindowSize->{1920, 997},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+Magnification:>1.5 Inherited,
+FrontEndVersion->"10.3 for Microsoft Windows (64-bit) (December 10, 2015)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 526, 13, 273, "Text"],
+Cell[1087, 35, 169, 4, 74, "Text"],
+Cell[1259, 41, 136, 3, 45, "Input"],
+Cell[1398, 46, 279, 5, 45, "Input"],
+Cell[1680, 53, 113, 4, 74, "Text"],
+Cell[1796, 59, 246, 7, 45, "Input"],
+Cell[2045, 68, 397, 8, 159, "Text"],
+Cell[2445, 78, 679, 14, 45, "Input"],
+Cell[3127, 94, 275, 6, 74, "Text"],
+Cell[3405, 102, 556, 12, 45, "Input"],
+Cell[CellGroupData[{
+Cell[3986, 118, 796, 16, 45, "Input"],
+Cell[4785, 136, 2899, 96, 86, "Output"]
+}, Open  ]],
+Cell[7699, 235, 186, 5, 102, "Text"],
+Cell[7888, 242, 148, 3, 45, "Input"],
+Cell[CellGroupData[{
+Cell[8061, 249, 554, 13, 45, "Input"],
+Cell[8618, 264, 839, 24, 83, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9494, 293, 604, 14, 45, "Input"],
+Cell[10101, 309, 1061, 33, 83, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
